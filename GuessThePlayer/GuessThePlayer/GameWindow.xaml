@@ -1,0 +1,118 @@
+﻿<Window x:Class="GuessThePlayer.GameWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GuessThePlayer"
+        mc:Ignorable="d"
+        Title="" Height="350" Width="600"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        ResizeMode="NoResize">
+    <Window.Resources>
+        <Style x:Key="AnswerButton"  TargetType="Button">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsCorrect}" Value="True">
+                    <Setter Property="Background" Value="Green"/>
+                </DataTrigger>
+                <DataTrigger  Binding="{Binding IsCorrect}" Value="False">
+                    <Setter Property="Background" Value="Red"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsCorrect}" Value="{x:Null}">
+                    <Setter Property="Background" Value="LightGray"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Window.Background>
+        <ImageBrush ImageSource="/GuessThePlayer;component/Resources/Background/qMark.jpg"/>
+    </Window.Background>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="280"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Sport}" Foreground="AntiqueWhite" FontSize="16" Margin="10 0 0 0"/>
+                <TextBlock Text="{Binding Difficulty}" Foreground="AntiqueWhite" FontSize="16" Margin="10 0 0 0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Border Margin="200 45 0 0" BorderThickness="0"  HorizontalAlignment="Center" VerticalAlignment="Center" Height="220" Width="180">
+                    <Image Source="{Binding Image}" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+                <TextBlock  Text="{Binding TimeLeft}"  Margin="10 220 0 0"  HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="Bold" Foreground="Tomato" FontSize="14"/>
+            </StackPanel>
+        </StackPanel>
+
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Name="answ1" Content="{Binding Options[0].Player.Name}" CommandParameter="{Binding Options[0]}">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Margin" Value="10 18 10 10"/>
+                        <Setter Property="FontSize" Value="14"/>
+                        <Setter Property="Command" Value="{Binding CheckAnswerCommand}"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Options[0].IsCorrect}" Value="True">
+                                <Setter Property="Background" Value="Green"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Options[0].IsCorrect}" Value="False">
+                                <Setter Property="Background" Value="Red"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Options[0].IsCorrect}" Value="{x:Null}">
+                                <Setter Property="Background" Value="LightGray"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button Name="answ2" Grid.Column="1" Content="{Binding Options[1].Player.Name}" CommandParameter="{Binding Options[1]}">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Margin" Value="10 18 10 10"/>
+                        <Setter Property="FontSize" Value="14"/>
+                        <Setter Property="Command" Value="{Binding CheckAnswerCommand}"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Options[1].IsCorrect}" Value="True">
+                                <Setter Property="Background" Value="Green"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Options[1].IsCorrect}" Value="False">
+                                <Setter Property="Background" Value="Red"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Options[1].IsCorrect}" Value="{x:Null}">
+                                <Setter Property="Background" Value="LightGray"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button Name="answ3" Grid.Column="2" Content="{Binding Options[2].Player.Name}" CommandParameter="{Binding Options[2]}">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Margin" Value="10 18 10 10"/>
+                        <Setter Property="FontSize" Value="14"/>
+                        <Setter Property="Command" Value="{Binding CheckAnswerCommand}"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Options[2].IsCorrect}" Value="True">
+                                <Setter Property="Background" Value="Green"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Options[2].IsCorrect}" Value="False">
+                                <Setter Property="Background" Value="Red"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Options[2].IsCorrect}" Value="{x:Null}">
+                                <Setter Property="Background" Value="LightGray"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </Grid>
+
+    </Grid>
+</Window>
